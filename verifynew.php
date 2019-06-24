@@ -3,21 +3,14 @@
 	if(isset($_POST['sendotp']))
   {
       $number = $_POST['Mobile'];
-			echo "AAYA";
+		  //echo "AAYA";
 	    $username = "harshhingorani7@gmail.com";
 	    $hash = "1adb410da17bf096b8a46594a12d026246dbf2c6380d0312f6a6744ba09755f9";
-
-
-    	$test = true;
-
-
     	$sender = "TXTLCL"; // This is who the message appears to be from.
     	$numbers = "$number";
-			setcookie('otp', $otp);
       $otp = mt_rand(1000, 9999);
+			setcookie('otp', $otp);
     	$message = "Hello. This is your OTP:- " . $otp;
-    	// 612 chars or less
-    	// A single number or a comma-seperated list of numbers
     	$message = urlencode($message);
     	$data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers;/*."&test=".$test;*/
     	$ch = curl_init('http://api.textlocal.in/send/?');
@@ -39,19 +32,11 @@
 					$result = curl_exec($ch); // This is the result from the API
 					curl_close($ch);
 				}
-    }
 
-		if(isset($_POST['verifyotp']))
-		{
-			$otp = $_POST['otp'];
-			if($_COOKIE['otp'] == $otp);
-			{
-			echo "congratulations, Your mobile is verified.";
-		  }
-			else
-			{
-				echo "please enter correct otp.";
-			}
+				//echo $otp;
+				// if(isset($_POST['verifyotp'])){
+				// 	if($_POST)
+				}
 		}
 ?>
 
